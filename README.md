@@ -1,42 +1,36 @@
 # Jammming
 
-Jammming é um CRUD fullstack simples de álbuns, com React no frontend, Node.js com Express no backend e MySQL como banco de dados.
+Jammming é um CRUD fullstack simples para gerenciamento de álbuns musicais.
 
-## Tecnologias
+## Requisitos
 
-- Frontend: React, Vite, React Router, Axios, Tailwind CSS
-- Backend: Node.js, Express, mysql2, express-validator, CORS
-- Banco de dados: MySQL
+- Node.js `22.12+` ou `20.19+`
+- MySQL
 
-## Funcionalidades
+## Como rodar
 
-- Listagem de álbuns com paginação
-- Busca de álbuns por título ou artista
-- Visualização de detalhes do álbum
-- Cadastro de novos álbuns
-- Edição de álbuns existentes
-- Exclusão de álbuns
-- Validação no backend e mensagens de retorno no frontend
-- Rodapé com o nome do aluno visível no sistema
+1. Importe `database/jammming.sql` no MySQL.
+2. Crie `backend/.env` com base em `backend/.env.example`.
+3. Crie `frontend/.env` com base em `frontend/.env.example`.
+4. Instale e rode o backend:
 
-## Estrutura do projeto
-
-```text
-pjbl/
-  backend/
-  database/
-  frontend/
+```bash
+cd backend
+npm install
+npm run dev
 ```
 
-## Como executar
+5. Em outro terminal, instale e rode o frontend:
 
-### 1. Importe o banco de dados
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-Importe o arquivo `database/jammming.sql` no MySQL. O script cria o banco, cria a tabela `albums` e insere dados iniciais.
+## Variáveis de ambiente
 
-### 2. Configure o backend
-
-Dentro de `backend/`, crie um arquivo `.env` com base no `.env.example`:
+Backend:
 
 ```env
 PORT=3001
@@ -47,57 +41,8 @@ DB_PASSWORD=sua_senha
 DB_NAME=jammming
 ```
 
-Instale as dependências e inicie a API:
-
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-### 3. Configure o frontend
-
-Dentro de `frontend/`, crie um arquivo `.env` com base no `.env.example`:
+Frontend:
 
 ```env
 VITE_API_URL=http://localhost:3001/api
 ```
-
-Instale as dependências e inicie o frontend:
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-O frontend roda na porta padrão do Vite e consome a API do backend.
-
-## Rotas da API
-
-- `GET /api/albums`
-- `GET /api/albums/:id`
-- `POST /api/albums`
-- `PUT /api/albums/:id`
-- `DELETE /api/albums/:id`
-
-## Validação
-
-Os álbuns exigem os seguintes campos:
-
-- `title`
-- `artist`
-- `genre`
-- `releaseYear`
-- `tracksCount`
-
-Campos opcionais:
-
-- `label`
-- `coverUrl`
-
-## Observações
-
-- O nome da aplicação é `Jammming`.
-- O rodapé mostra `Desenvolvido por Gustavo Muniz`.
-- O arquivo SQL exigido pelo trabalho está em `database/jammming.sql`.

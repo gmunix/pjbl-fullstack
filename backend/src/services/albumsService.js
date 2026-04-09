@@ -30,7 +30,7 @@ export async function listAlbums({ page, limit, search }) {
     params,
   )
 
-  const [countRows] = await pool.execute(
+  const [countRows] = await pool.query(
     `SELECT COUNT(*) AS total
      FROM albums
      ${whereClause}`,
@@ -49,7 +49,7 @@ export async function listAlbums({ page, limit, search }) {
 }
 
 export async function findAlbumById(id) {
-  const [rows] = await pool.execute(
+  const [rows] = await pool.query(
     `SELECT id, title, artist, genre, release_year AS releaseYear, label, cover_url AS coverUrl,
       tracks_count AS tracksCount, created_at AS createdAt
      FROM albums
@@ -61,7 +61,7 @@ export async function findAlbumById(id) {
 }
 
 export async function createAlbum(payload) {
-  const [result] = await pool.execute(
+  const [result] = await pool.query(
     `INSERT INTO albums
       (title, artist, genre, release_year, label, cover_url, tracks_count)
      VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -72,7 +72,7 @@ export async function createAlbum(payload) {
 }
 
 export async function updateAlbum(id, payload) {
-  const [result] = await pool.execute(
+  const [result] = await pool.query(
     `UPDATE albums
      SET title = ?, artist = ?, genre = ?, release_year = ?, label = ?, cover_url = ?, tracks_count = ?
      WHERE id = ?`,
@@ -87,7 +87,7 @@ export async function updateAlbum(id, payload) {
 }
 
 export async function deleteAlbum(id) {
-  const [result] = await pool.execute('DELETE FROM albums WHERE id = ?', [id])
+  const [result] = await pool.query('DELETE FROM albums WHERE id = ?', [id])
 
   return result.affectedRows > 0
 }
